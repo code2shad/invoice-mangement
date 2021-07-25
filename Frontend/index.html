@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" > 
+    <title>Invoice Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <img src="css/images/Group 20399.svg" alt="logo2" class="logo2" />
+      <img src="css/images/logo.svg" alt="logo" class="logo" />
+      
+    </header>
+    <section>
+      <p>Invoice List</p>
+     <div class="tableContainer">
+        <div class="tableButtonContainer">
+          <div></div>
+          <div>
+            <button class="tableButton" id="add">
+              <img src="./css/images/plus (1).png" alt="add" style="width: 14px" />
+               Add
+            </button>
+
+            <button class="tableButton" id="edit">
+              <img src="./css/images/pencil.png" alt="add" style="width: 14px" />
+               Edit
+            </button>
+            <button class="tableButton" id="delete">
+              <img src="./css/images/remove.png" alt="add" style="width: 14px" />
+               Delete
+            </button>
+            <input
+              type="text"
+              id="search"
+              name="search"
+              placeholder="Search by Invoice Number"
+              
+            />
+          </div>
+        </div>
+        <table id="table">
+          <thead>
+          <tr>
+            <th><input type="checkbox" name="" id="checkAll" /></th>
+            </th>
+            <th>Customer Name</th>
+            <th>Customer #</th>
+            <th>Invoice</th>
+            <th>Invoice Amount</th>
+            <th>Due Date</th>
+            <th>Predicted Payment Date</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="tBody"></tbody>
+          
+       </table>
+    </div>
+  </section>
+
+  <div class="backDrop hide"></div>
+
+  <div class="addModal modalContainer hide" id="addModal">
+    <div class="modalHeader">
+      <p>Add Invoice</p>
+      <button id="closeModal">
+        <img
+          src="./css/images/baseline-close-24px.svg"
+          alt="close"
+          style="width: 12px"
+        />
+      </button>
+    </div>
+
+    <div class="modalBody">
+      <form action="" class="modalForm addModalForm" id="addModalForm">
+        <div class="inputContainer">
+          <label for="customerName"> Customer Name<span>*</span> </label>
+          <input
+            type="text"
+            name="customerName"
+            id="customerName"
+            placeholder="Customer Name"
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="customerNo"> Customer No.<span>*</span> </label>
+          <input
+            type="text"
+            name="customerNo"
+            id="customerNo"
+            placeholder="Customer No."
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="invoiceNo"> Invoice No.<span>*</span> </label>
+          <input
+            type="text"
+            name="invoiceNo"
+            id="invoiceNo"
+            placeholder="Invoice No."
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="invoiceAmount"> Invoice Amount<span>*</span> </label>
+          <input
+            type="text"
+            name="invoiceAmount"
+            id="invoiceAmount"
+            placeholder="Invoice Amount"
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="dueDate"> Due date <span>*</span> </label>
+          <input
+            type="text"
+            name="dueDate"
+            id="dueDate"
+            placeholder="Due Date"
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="notes"> Notes<span>*</span> </label>
+          <textarea
+            type="text"
+            name="notes"
+            id="notes"
+            placeholder="Notes"
+            rows="10"
+          >
+          </textarea>
+        </div>
+      </form>
+      <div class="modalFooter">
+        <div style="flex-grow: 1">
+          <button class="minimalButton" id="cancelAddModal">Cancel</button>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr;
+          "
+        >
+          <button class="outlineButton" id="clearAddModal">Clear</button>
+
+          <button class="primaryButton" id="submitAddModal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="editModal modalContainer hide" id="editModal">
+    <div class="modalHeader">
+      <p>Edit Invoice</p>
+      <button id="closeEditModal">
+        <img
+          src="./css/images/baseline-close-24px.svg"
+          alt="close"
+          style="width: 12px"
+        />
+      </button>
+    </div>
+
+    <div class="modalBody">
+      <form action="" class="modalForm editModalForm" id="editModalForm">
+        <div class="inputContainer">
+          <label for="invoiceAmount"> Invoice Amount<span>*</span> </label>
+          <input
+            type="text"
+            name="invoiceAmount"
+            id="invoiceAmount"
+            placeholder="lorem"
+          />
+        </div>
+
+        <div class="inputContainer">
+          <label for="notes"> Notes<span>*</span> </label>
+          <textarea
+            type="text"
+            name="notes"
+            id="notes"
+            placeholder="lorem"
+            rows="10"
+          >
+          </textarea>
+        </div>
+      </form>
+      <div class="modalFooter">
+        <div style="flex-grow: 1">
+          <button class="minimalButton" id="cancelEditModal">Cancel</button>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr;
+          "
+        >
+          <button class="outlineButton" id="clearEditModal">Clear</button>
+
+          <button class="primaryButton" id="submitEditModal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deleteModal modalContainer hide" id="deleteModal">
+    <div class="modalHeader">
+      <p style="font-size: 28px">Delete record(s)?</p>
+      <button id="closeDeleteModal">
+        <img
+          src="./css/images/baseline-close-24px.svg"
+          alt="close"
+          style="width: 12px"
+        />
+      </button>
+    </div>
+
+    <div class="modalBody">
+      <p style="font-size: 20px">
+        You'll lose your record(s) after this action. We can't recover them
+        once you delete.
+      </p>
+      <br />
+      <p style="font-size: 20px" id="deleteText">
+        Are you sure you want to <span>permanently</span>  delete them?
+      </p>
+      <div class="modalFooter">
+        
+        <div
+          style="
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 1fr;
+          "
+        >
+          <button class="outlineButton" id="clearDeleteModal">Cancel</button>
+
+          <button class="primaryButton" id="submitDeleteModal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./index.js"></script>
+</body>
+</html>
